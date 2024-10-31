@@ -1,7 +1,7 @@
 
 <img src="screenshots/librusik.png" alt="Preview photo" width="600"/>
 
-### Check out the [wiki](https://github.com/dani3l0/librusik/wiki) for more detailed information!
+
 
 -----
 
