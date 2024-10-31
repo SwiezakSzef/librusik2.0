@@ -1,0 +1,23 @@
+<div id="overview">
+	<button class="back" onclick="goto('more', 2, true, true)"></button><br>
+	<div class="header">Attendances</div>
+	<div class="subheader">Per-subject dashboard</div>
+	<div class="progress%s" style="margin-bottom: 16px;">
+		<div class="text">
+			<div class="value">%s</div>
+			<div class="text">Wasted time<br><b>%s</b></div>
+		</div>
+		<div class="bar"><div style="height: %s%%;animation: mainbar 4s;"></div></div>
+	</div>
+	<button onclick="goto('attendancesold', 2, true)">Show full history</button><br>
+	<button class="bubble highlighted unclickable">
+		<div class="name">Presences</div>
+		<div class="value">%s out of %s</div>
+	</button>
+	<button class="bubble highlighted unclickable">
+		<div class="name">Absences</div>
+		<div class="value">%s, %s unexcused</div>
+	</button>
+	%s
+</div>
+%s

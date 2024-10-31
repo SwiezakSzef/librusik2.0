@@ -1,0 +1,193 @@
+<div id="settings">
+	<button id="userpic" onclick="showdiv('settings', 'profilepic')">
+		<img src="img/profile/%s" onload="loadimg(this)">
+	</button>
+	<div class="headline">%s %s</div>
+	<div class="username">%s</div>
+	<button onclick="showdiv('settings', 'logout')" class="highlighted">Log out</button>
+	<button onclick="showdiv('settings', 'tiers')" style="background:#FB0;color:#222;%s" class="tiers">Upgrade tier</button>
+	<br>
+	<button class="option" onclick="showdiv('settings', 'features')">
+		<div class="icon">auto_awesome</div>
+		<div>
+			<div class="title">Features</div>
+			<div class="subtitle">Adjust stuff here and there.</div>
+		</div>
+	</button>
+	<button class="option" onclick="showdiv('settings', 'librusik')">
+		<div class="icon">person</div>
+		<div>
+			<div class="title">Librusik account</div>
+			<div class="subtitle">Update password or delete account.</div>
+		</div>
+	</button>
+	<button class="option" onclick="showdiv('settings', 'synergie')">
+		<div class="icon">badge</div>
+		<div>
+			<div class="title">Synergia account</div>
+			<div class="subtitle">Manage your Librus Synergia credentials.</div>
+		</div>
+	</button>
+	<button class="option" onclick="showdiv('settings', 'about')">
+		<div class="icon">info</div>
+		<div>
+			<div class="title">About Librusik</div>
+			<div class="subtitle">What, why, when and where.</div>
+		</div>
+	</button>
+</div>
+<div class="hidden" id="tiers" style="display:none"><button class="back" onclick="showdiv('tiers', 'settings', true)"></button><br>%s</div>
+<div class="hidden" id="about" style="display:none"><button class="back" onclick="showdiv('about', 'settings', true)"></button><br>%s</div>
+<div class="hidden" id="profilepic" style="display:none">
+	<button class="back" onclick="showdiv('profilepic', 'settings', true)"></button>
+	<div class="header">Profile picture</div>
+	<input type="file" id="profilepic-upload" style="display: none;" onchange="uploadPic(this)" accept="image/png | image/jpeg">
+	<button class="option" id="uploadpicbtn" onclick="document.getElementById('profilepic-upload').click()">
+		<div class="icon">file_upload</div>
+		<div>
+			<div class="title">Upload custom picture</div>
+			<div class="subtitle">Use your very own photo as profile photo.</div>
+		</div>
+	</button><br>
+	<div class="pplist">%s</div>
+</div>
+<div class="hidden" id="synergie" style="display:none">
+	<button class="back" onclick="showdiv('synergie', 'settings', true)"></button>
+	<div class="header">Synergia credentials</div>
+	<div class="subheader">Manage Synergia account connected to Librusik.</div>
+	<div class="credentials">
+		<div class="name">Login</div>
+		<div class="value">%s</div>
+	</div>
+	<div class="credentials">
+		<div class="name">Password</div>
+		<div class="value">%s</div>
+	</div>
+	<button class="option" onclick="showdiv('synergie', 'newsynergiapass')">
+		<div class="icon">password</div>
+		<div>
+			<div class="title">Change password</div>
+			<div class="subtitle">Update password for Synergia if you recently changed it.</div>
+			<div id="passweird" class="sensitive shidden"></div>
+		</div>
+	</button>
+	<button class="option" onclick="showdiv('synergie', 'newsynergia')">
+		<div class="icon">account_box</div>
+		<div>
+			<div class="title">Change account</div>
+			<div class="subtitle">Use another Synergia account for fetching data.</div>
+		</div>
+	</button>
+</div>
+<div class="hidden" id="librusik" style="display:none">
+	<button class="back" onclick="showdiv('librusik', 'settings', true)"></button>
+	<div class="header">Librusik account</div>
+	<div class="subheader">Secure it or delete it.</div>
+	<button class="option" onclick="showdiv('librusik', 'chgpasswd')">
+		<div class="icon">key</div>
+		<div>
+			<div class="title">Change password</div>
+			<div class="subtitle">Password used to log in.</div>
+		</div>
+	</button>
+	<button class="option" onclick="showdiv('librusik', 'rmaccountc')">
+		<div class="icon">delete</div>
+		<div>
+			<div class="title">Delete account</div>
+			<div class="subtitle">If you no longer enjoy using Librusik...</div>
+		</div>
+	</button>
+</div>
+<div class="hidden" id="features" style="display:none">
+	<button class="back" onclick="showdiv('features', 'settings', true)"></button>
+	<div class="header">Features</div>
+	<div class="subheader">Personalize them to your needs.</div>
+	<button class="option checkbox" onclick="featureTile(this, 'confetti')">
+		<div class="icon">celebration</div>
+		<div>
+			<div class="title">Party mode</div>
+			<div class="subtitle">Confetti explodes upon every click!<br>Reload app to apply</div>
+		</div>
+		<div class="check %s"></div>
+	</button>
+	<button class="option checkbox" onclick="featureTile(this, 'grades_cleanup')">
+		<div class="icon">cleaning_services</div>
+		<div>
+			<div class="title">Grades cleanup</div>
+			<div class="subtitle">Remove subjects with no grades from Grades tab.</div>
+		</div>
+		<div class="check %s"></div>
+	</button>
+	<button class="option checkbox" onclick="featureTile(this, 'attendances_cleanup')">
+		<div class="icon">cleaning_services</div>
+		<div>
+			<div class="title">Attendances cleanup</div>
+			<div class="subtitle">Hide subjects with 0%% frequency from Attendances dashboard.</div>
+		</div>
+		<div class="check %s"></div>
+	</button>
+	<button class="option" onclick="restartApp()">
+		<div class="icon">restart_alt</div>
+		<div>
+			<div class="title">Reload Librusik</div>
+			<div class="subtitle">Simply perform an app restart.</div>
+		</div>
+	</button>
+</div>
+<div class="hidden" id="chgpasswd" style="display:none">
+	<button class="back" onclick="showdiv('chgpasswd', 'librusik', true)"></button>
+	<div class="header">Change password</div>
+	<input id="pass" type="password" placeholder="Current password" maxlength="32"><br>
+	<input id="newpass" type="password" placeholder="New password" maxlength="32"><br>
+	<input id="newpassc" type="password" placeholder="New password (again)" maxlength="32"><br>
+	<br>
+	<button onclick="changepasswd()" class="highlighted">Submit</button>
+</div>
+<div class="hidden" id="rmaccountc" style="display:none">
+	<button class="back" onclick="showdiv('rmaccountc', 'librusik', true)"></button>
+	<div class="header">Delete account</div>
+	<div class="brighten">Please note that all your data will be wiped out from database and <b>this cannot be undone.</b></div>
+	<br>
+	<button onclick="showdiv('rmaccountc', 'rmaccount')" class="highlighted danger">Delete my account</button>
+</div>
+<div class="hidden" id="rmaccount" style="display:none">
+	<button class="back" onclick="showdiv('rmaccount', 'librusik', true)"></button>
+	<div class="header">Delete account</div>
+	<input id="delaccpasswd" type="password" placeholder="Password" maxlength="32"><br>
+	<input id="delaccconf" type="text" placeholder="'Yes, I am totally sure.'" maxlength="32"><br>
+	<button onclick="delacc()" class="highlighted danger">Proceed</button>
+</div>
+<div class="hidden" id="logout" style="display:none">
+	<button class="back" onclick="showdiv('logout', 'settings', true)"></button>
+	<div class="header">Log out</div>
+	<div class="brighten">Are you sure?</div>
+	<br>
+	<button onclick="rmCookie()" class="highlighted">Yes, end session</button>
+</div>
+<div class="hidden" id="newsynergiapass" style="display:none">
+	<button class="back" onclick="showdiv('newsynergiapass', 'synergie', true)"></button>
+	<div class="header">Change Synergia password</div>
+	<input id="newspasswd" type="password" placeholder="New password" maxlength="32"><br>
+	<input id="newslibrusikpasswd" type="password" placeholder="Librusik password" maxlength="32"><br>
+	<button onclick="newspass()" class="highlighted">Submit</button>
+</div>
+<div class="hidden" id="newsynergia" style="display:none">
+	<button class="back" onclick="showdiv('newsynergia', 'synergie', true)"></button>
+	<div class="header">Change Synergia account</div>
+	<input id="newslogin" type="text" placeholder="New login" maxlength="32"><br>
+	<input id="newspassword" type="password" placeholder="New password" maxlength="32"><br>
+	<input id="newslibrusikpass" type="password" placeholder="Librusik password" maxlength="32"><br>
+	<button onclick="newsaccount()" class="highlighted">Submit</button>
+</div>
+<div class="hidden" id="err" style="display:none">
+	<button class="back" id="errbtn"></button><br>
+	<div class="icon svge">priority_high</div>
+	<div class="error" id="errname"></div>
+	<div class="suggestion" id="errdesc"></div>
+</div>
+<div class="hidden" id="succ" style="display:none">
+	<button class="back" id="succbtn"></button><br>
+	<div class="icon ssvg">done</div>
+	<div class="success" id="succname"></div>
+	<div class="suggestion" id="succdesc"></div>
+</div>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Librusik</title>
+	<base href="%s">
+	<meta charset="utf-8">
+	<meta name="theme-color" content="#222">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href="img/icon.png" rel="icon">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script type="text/javascript" src="js/confetti.min.js"></script>
+	<script type="text/javascript" src="js/core.js"></script>
+	<style type="text/css">%s</style>
+</head>
+<body onload="indexpage()" id="body">
+	<div class="tiers" id="demotier" style="display: none;">
+		<b style="font-size: 16px;">This is a demo tier.</b>
+		<div id="demotext">Subscription ends in <b id="demodays"></b> days. Enjoy all features!</div>
+	</div>
+	<div id="notifications"></div>
+	<div class="top">
+		<h1>Librusik</h1><b id="tier" class="tiers tier"></b>
+		<button class="gotoapp" onclick="agou('panel')">Panel</button><br>
+		<div id="panel">
+			<button onclick="goto('home', 0)" class="panelitem active">
+				<div class="icon">home</div>
+				<div class="home">Home</div>
+			</button>
+			<button onclick="goto('grades', 1)" class="panelitem">
+				<div class="icon">book</div>
+				<div class="grades">Grades</div>
+			</button>
+			<button onclick="goto('more', 2)" class="panelitem">
+				<div class="icon">more_horiz</div>
+				<div class="more">More</div>
+			</button>
+			<button onclick="goto('settings', 3)" class="panelitem">
+				<div class="icon">settings</div>
+				<div class="settings">Settings</div>
+			</button>
+		</div>
+	</div>
+	<center>
+		<div id="content"></div>
+		<div id="darken" onclick="toggle_notifications(false)"></div>
+	</center>
+</body>

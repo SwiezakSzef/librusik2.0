@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Log in - Librusik</title>
+	<meta charset="utf-8">
+	<meta name="theme-color" content="#222">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href="img/icon.png" rel="icon">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script type="text/javascript" src="js/core.js"></script>
+</head>
+<body onload="loginpage(); listeners();">
+	<div class="top">
+		<h1>Librusik</h1>
+		<button class="gotoapp" onclick="agou('panel')">Panel</button><br>
+		<div class="subh1">Chrzanimy oświatę</div>
+	</div>
+	<br><br>
+	<center>
+		<div class="loginbox" id="login">
+			<button onclick="showdiv('login', 'log_in')" class="moreitem" style="fill: #0D8; color: #0D8;">
+				<div class="icon">login</div>
+				<div>Log in</div>
+			</button>
+			<button onclick="showdiv('login', 'register')" class="moreitem" style="fill: #B6F; color: #B6F;%s">
+				<div class="icon">person_add</div>
+				<div>Create account</div>
+			</button><br><br>
+			<button class="option" onclick="showdiv('login', 'about')">
+				<div class="icon">info</div>
+				<div>
+					<div class="title">About Librusik</div>
+					<div class="subtitle">What, why, when and where.</div>
+				</div>
+			</button>
+		</div>
+		<div class="loginbox hidden" style="display: none" id="log_in">
+			<button class="back" onclick="showdiv('log_in', 'login', true)"></button>
+			<div class="header">Log in</div>
+			<div class="subheader">to your existing Librusik account.</div>
+			<input oninput="usernameit('user')" type="text" id="user" placeholder="Username"><br>
+			<input type="password" id="passwd" placeholder="Password"><br>
+			<button onclick="showdiv('log_in', 'forgotpass')">Forgot password?</button>
+			<button id="loginbutton" class="highlighted" onclick="login()">Log in</button><br>
+		</div>
+		<div class="loginbox hidden" style="display: none" id="forgotpass">
+			<button class="back" onclick="showdiv('forgotpass', 'log_in', true)"></button>
+			<div class="header">Forgot password</div>
+			<div class="subheader">Please fill in these fields to identify your Librusik account and verify it's you.</div>
+			<div class="subheader">Your Librusik password will be reset.</div>
+			<input type="text" id="suser" placeholder="Synergia login"><br>
+			<input type="password" id="spass" placeholder="Synergia password"><br>
+			<button id="loginbutton" class="highlighted" onclick="restoreAccount()">Restore my account</button><br>
+		</div>
+		<div class="loginbox hidden" style="display: none" id="restored">
+			<button class="back" onclick="showdiv('restored', 'log_in', true)"></button>
+			<div class="header">Account restored</div>
+			<div class="subheader">Here are your new Librusik credentials.</div>
+			<div class="subheader">Please change your password later in Settings.</div><br>
+			<div style="font-weight: bold;margin: 4px;color: #888">Your Librusik username</div>
+			<div id="r_username" class="restored"></div><br>
+			<div style="font-weight: bold;margin: 4px;color: #888">Your new password</div>
+			<div id="r_password" class="restored"></div><br>
+		</div>
+		<div class="loginbox hidden" id="register" style="display: none">
+			<button class="back" onclick="showdiv('register', 'login', true)"></button>
+			<div class="header">Create account</div>
+			<div class="subheader s2">Please <b>do not forget</b> your credentials.<br>You won't be able to reset the password.</div>
+			<input oninput="usernameit('nuser')" type="text" id="nuser" placeholder="Username (4-16 characters)" maxlength="16"><br>
+			<input type="password" id="npasswd" placeholder="Password (4-32 characters)" maxlength="32"><br>
+			<input type="password" id="npasswdc" placeholder="Password (again)" maxlength="32"><br>
+			<input type="text" id="l_user" placeholder="Synergia login" maxlength="16"><br>
+			<input type="password" id="l_passwd" placeholder="Synergia password" maxlength="32"><br>
+			<button id="registerbutton" onclick="register()" class="highlighted">Create account</button>
+		</div>
+		<div class="loginbox hidden" id="about" style="display: none"><button class="back" onclick="showdiv('about', 'login', true)"></button><br>%s</div>
+		<div class="hidden" id="err" style="display:none">
+			<div class="icon svge">priority_high</div>
+			<div class="error" id="errname"></div>
+			<div class="suggestion" id="errdesc"></div>
+			<button class="highlighted" id="errbtn">Try again</button><br>
+		</div>
+		<div class="hidden" id="succ" style="display:none">
+			<button style="display: none;" id="succbtn"></button><br>
+			<div class="icon ssvg">done</div>
+			<div class="success" id="succname"></div>
+			<div class="suggestion" id="succdesc"></div>
+		</div>
+	</center>
+</body>
+<style type="text/css">
+	.box {
+		display: inline-block;
+		border: 1px solid #333;
+		padding: 12px;
+		margin: 4px;
+		border-radius: 6px;
+	}
+	.box > div {
+		font-weight: bold;
+		font-size: 15px;
+		color: #AAA;
+	}
+	.box > .icon {
+		padding: 16px;
+		font-size: 88px;
+		color: #777;
+	}
+</style>
+<script type="text/javascript">
+	function listeners() {
+		document.getElementById("user").addEventListener("keypress", function(e) { if (e.key === "Enter") document.getElementById("passwd").focus(); });
+		document.getElementById("passwd").addEventListener("keypress", function(e) { if (e.key === "Enter") login(); });
+		document.getElementById("nuser").addEventListener("keypress", function(e) { if (e.key === "Enter") document.getElementById("npasswd").focus(); });
+		document.getElementById("npasswd").addEventListener("keypress", function(e) { if (e.key === "Enter") document.getElementById("npasswdc").focus(); });
+		document.getElementById("npasswdc").addEventListener("keypress", function(e) { if (e.key === "Enter") document.getElementById("l_user").focus(); });
+		 document.getElementById("l_user").addEventListener("keypress", function(e) { if (e.key === "Enter") document.getElementById("l_passwd").focus(); });
+		document.getElementById("l_passwd").addEventListener("keypress", function(e) { if (e.key === "Enter") register(); });
+	}
+</script>
+</html>

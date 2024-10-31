@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Panel - Librusik</title>
+	<meta charset="utf-8">
+	<base href="%s">
+	<meta name="theme-color" content="#222">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href="img/icon.png" rel="icon">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="css/astyles.css">
+	<script type="text/javascript" src="js/acore.js"></script>
+	<style type="text/css">%s</style>
+</head>
+<body onload="index()">
+	<div class="top">
+		<h1>Panel</h1>
+		<button class="gotoapp" onclick="agou('')">Back to app</button><br>
+	</div>
+	<center>
+		<div id="main">
+			<div class="circ" id="dbusage" style="color: #48F">
+				<svg class="cprog" viewBox="0 0 110 110">
+					<defs>
+						<path id="thePath2" d="M40,90 A40,40 0 1,1 70,90" style="fill:none;"/>
+					</defs>
+					<use xlink:href="#thePath2" style="stroke: #333;" />
+					<use xlink:href="#thePath2" id="dbusagep" style="stroke: #48F;stroke-dasharray: 220.6;stroke-dashoffset: 220;transition: stroke-dashoffset 2s" />
+				</svg>
+				<div class="value">-<b>%%</b></div>
+				<div class="tooltip">Using - of -</div>
+				<div class="icon">storage</div>
+			</div><br>
+			<button onclick="showdiv('main', 'logout')" class="highlighted">Log out</button><br>
+			<button class="option" onclick="showdiv('main', 'traffic')">
+				<div class="icon">traffic</div>
+				<div>
+					<div class="title">Traffic</div>
+					<div class="subtitle">How many times Librusik got connected to Synergia.</div>
+				</div>
+			</button>
+			<button class="option" onclick="showdiv('main', 'userlist')">
+				<div class="icon">groups</div>
+				<div>
+					<div class="title">People</div>
+					<div class="subtitle">List & manage registered people on this instance.</div>
+				</div>
+			</button>
+			<button class="option" onclick="showdiv('main', 'app-settings')">
+				<div class="icon">settings</div>
+				<div>
+					<div class="title">App settings</div>
+					<div class="subtitle">Tweak your Librusik installation.</div>
+				</div>
+			</button>
+			<button class="option" onclick="showdiv('main', 'info')">
+				<div class="icon">memory</div>
+				<div>
+					<div class="title">System</div>
+					<div class="subtitle">Some information about your environment.</div>
+				</div>
+			</button>
+		</div>
+		<div id="credentials" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('credentials', 'app-settings', true)"></button>
+			<div class="header">Panel credentials</div>
+			<div class="subheader">Manage your login & password for this administration page</div>
+			<button class="option" onclick="showdiv('credentials', 'chgname')">
+				<div class="icon">person</div>
+				<div>
+					<div class="title">Change name</div>
+					<div class="subtitle">Try to avoid common admin names.</div>
+				</div>
+			</button>
+			<button class="option" onclick="showdiv('credentials', 'chgpasswd')">
+				<div class="icon">password</div>
+				<div>
+					<div class="title">Change password</div>
+					<div class="subtitle">If you feel a bit insecure or never changed it before.</div>
+				</div>
+			</button>
+		</div>
+		<div id="app-settings" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('app-settings', 'main', true)"></button>
+			<div class="header">App settings</div>
+			<div class="subheader">Tweak your Librusik installation</div>
+			<button class="option" onclick="showdiv('app-settings', 'credentials')">
+				<div class="icon">vpn_key</div>
+				<div>
+					<div class="title">Panel credentials</div>
+					<div class="subtitle">Manage your login & password for this administration page.</div>
+				</div>
+			</button>
+			<button class="option" onclick="showdiv('app-settings', 'notice')">
+				<div class="icon">notifications</div>
+				<div>
+					<div class="title">Notice</div>
+					<div class="subtitle">Pin an important notice on everyone's Home page.</div>
+				</div>
+			</button>
+			<button class="option" onclick="showdiv('app-settings', 'setcontact')">
+				<div class="icon">chat</div>
+				<div>
+					<div class="title">Contact</div>
+					<div class="subtitle">Set this so people on this instance will be able to reach you.</div>
+				</div>
+			</button>
+			<button class="option" onclick="showdiv('app-settings', 'tiers')">
+				<div class="icon">verified</div>
+				<div>
+					<div class="title">Tiers</div>
+					<div class="subtitle">Enable/disable Tiers and set your own list of requirements.</div>
+				</div>
+			</button>
+			<button class="option" onclick="showdiv('app-settings', 'database')">
+				<div class="icon">database</div>
+				<div>
+					<div class="title">Users & database</div>
+					<div class="subtitle">Enable/disable registration and change the maximum number of stored users.</div>
+				</div>
+			</button>
+			<button class="option" onclick="showdiv('app-settings', 'rebootc')">
+				<div class="icon">restart_alt</div>
+				<div>
+					<div class="title">Restart</div>
+					<div class="subtitle">Perform a full application restart.</div>
+				</div>
+			</button>
+		</div>
+		<div id="database" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('database', 'app-settings', true)"></button>
+			<div class="header">Users & database</div>
+			<div class="subheader">Registration and the maximum number of stored users</div>
+			<button class="option" onclick="showdiv('database', 'dblimit')">
+				<div class="icon">groups</div>
+				<div>
+					<div class="title">Database capacity</div>
+					<div class="subtitle">Set the maximum number of registered users.</div>
+				</div>
+			</button>
+			<button class="option" onclick="showdiv('database', 'registration')">
+				<div class="icon">person_add</div>
+				<div>
+					<div class="title">Registration</div>
+					<div class="subtitle">Set whether new accounts can be created.</div>
+				</div>
+			</button>
+		</div>
+		<div id="registration" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('registration', 'database', true)"></button>
+			<div class="header">Registration</div>
+			<div class="subheader">Set whether people are allowed to create new accounts or not</div>
+			<div class="bold">Registration is now <b id="registration_status"></b>.</div><br>
+			<button class="highlighted danger" onclick="setregistration(false)">Disable</button>
+			<button class="highlighted" onclick="setregistration(true)">Enable</button>
+		</div>
+		<div id="tiers" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('tiers', 'app-settings', true)"></button>
+			<div class="header">Tiers</div>
+			<div class="subheader">Enable/disable Tiers and set your own list of requirements</div>
+			<button class="option checkbox" onclick="checkbox(this)">
+				<div class="icon">verified</div>
+				<div>
+					<div class="title">Enable tiers</div>
+					<div class="subtitle">This feature may help in preventing random people using this instance.</div>
+				</div>
+				<div id="enable_tiers" class="check"></div>
+			</button><br>
+			<div style="max-width: 500px;">
+				<div class="darken bold">Message how to get <div class="tier free"></div></div>
+				<textarea style="height: 5ch;" id="freereq"></textarea><br><br>
+				<div class="darken bold">Message how to get <div class="tier plus"></div></div>
+				<textarea style="height: 5ch;" id="plusreq"></textarea><br><br>
+				<div class="darken bold">Message how to get <div class="tier pro"></div></div>
+				<textarea style="height: 5ch;" id="proreq"></textarea><br><br>
+				<div class="darken bold">Message below tier requirements</div>
+				<textarea style="height: 5ch;" id="tiers_text"></textarea><br><br>
+				<button class="highlighted" onclick="setTiers()">Save</button>
+			</div>
+		</div>
+		<div id="setcontact" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('setcontact', 'app-settings', true)"></button>
+			<div class="header">Contact</div>
+			<div class="subheader">Set this so people on this instance will be able to reach you</div>
+			<input placeholder="Email/social link here" id="contact"><br>
+			<button class="highlighted" onclick="setContact()">Save</button>
+		</div>
+		<div id="notice" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('notice', 'app-settings', true)"></button>
+			<div class="header">Notice</div>
+			<div class="subheader">Pin an important notice on everyone's Home page</div>
+			<textarea id="mynotice" placeholder="Nothing here. Type some text and hit 'Save' to show your notice."></textarea><br>
+			<button class="danger" onclick="clearNotice()">Clear</button>
+			<button class="highlighted" onclick="setNotice()">Save</button>
+		</div>
+		<div id="traffic" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('traffic', 'main', true)"></button>
+			<div class="header">Traffic</div>
+			<div class="subheader">How many times Librusik got connected to Synergia</div>
+			<iframe src="traffic.html"></iframe>
+		</div>
+		<div id="chgname" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('chgname', 'credentials', true)"></button>
+			<div class="header">Change name</div>
+			<div class="subheader">Try to avoid common admin names</div>
+			<input type="text" id="newname" oninput="usernameit('newname')" placeholder="New name"><br>
+			<input type="password" id="namepasswd" placeholder="Password"><br>
+			<button onclick="changename()" class="highlighted">Proceed</button>
+		</div>
+		<div id="chgpasswd" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('chgpasswd', 'credentials', true)"></button>
+			<div class="header">Change password</div>
+			<div class="subheader">If you feel a bit insecure or never changed it before</div>
+			<input type="password" id="pass" placeholder="Current password"><br>
+			<input type="password" id="newpass" placeholder="New password"><br>
+			<input type="password" id="newpassconf" placeholder="New password (again)"><br>
+			<button onclick="changepass()" class="highlighted">Change</button>
+		</div>
+		<div id="dblimit" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('dblimit', 'database', true)"></button>
+			<div class="header">Database capacity</div>
+			<div class="subheader">Set the maximum number of registered people</div>
+			<div id="userlimit" class="bold">Current limit: N/A</div>
+			<button onclick="setmaxusers('-')" class="moreless">-</button>
+			<div id="maxusers">N/A</div>
+			<button onclick="setmaxusers('+')" class="moreless">+</button><br><br>
+			<button onclick="setmaxusers('')">Reset</button>
+			<button onclick="sendmaxusers()" class="highlighted">Apply</button>
+		</div>
+		<div id="info" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('info', 'main', true)"></button>
+			<div class="header">System</div>
+			<div class="subheader">Some information about your environment</div>
+			<button class="bubble unclickable">
+				<div class="name">Device</div>
+				<div id="device" class="value">N/A</div>
+			</button>
+			<button class="bubble unclickable">
+				<div class="name">OS</div>
+				<div id="os" class="value">N/A</div>
+			</button><br>
+			<button class="bubble unclickable">
+				<div class="name">App uptime</div>
+				<div id="suptime" class="value">N/A</div>
+			</button>
+			<button class="bubble unclickable">
+				<div class="name">Database</div>
+				<div id="dbsize" class="value">N/A</div>
+			</button><br>
+			<button class="bubble unclickable">
+				<div class="name">CPUs</div>
+				<div id="cpus" class="value">N/A</div>
+			</button>
+			<button class="bubble unclickable">
+				<div class="name">Python version</div>
+				<div id="python" class="value">N/A</div>
+			</button><br>
+		</div>
+		<div id="reboot" class="hidden" style="display:none">
+			<br><br><br><br><br>
+			<div class="progtext">Rebooting, please wait...</div>
+			<div class="progress"><div id="rebutstatus" class="bar"></div></div>
+		</div>
+		<div id="rebootc" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('rebootc', 'app-settings', true)"></button>
+			<div class="header">Restart</div>
+			<div class="darken">Librusik will be stopped. Make sure your OS will automatically re-run it.<br><b>Continue?</b></div>
+			<br>
+			<button onclick="reboot(true)" class="highlighted danger">Yes, reboot</button>
+		</div>
+		<div id="logout" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('logout', 'main', true)"></button>
+			<div class="header">Log out</div>
+			<div class="darken">Are you sure?</div>
+			<br>
+			<button onclick="rmCookie()" class="highlighted">Yes, end session</button>
+		</div>
+		<div id="userlist" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('userlist', 'main', true)"></button>
+			<div class="header">People</div>
+			<div id="accountnum" class="subheader">N/A</div>
+			<div id="accountlist"></div>
+		</div>
+		<div id="user" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('user', 'userlist', true)"></button>
+			<div class="pic"><img id="user-pic"></div>
+			<div id="user-fullname"></div>
+			<div id="user-name" class="username"></div>
+			<div id="user-lastseen" class="darken bold"></div>
+			<div id="user-joined" class="darken bold"></div><br>
+			<div class="selectos tiers" id="user-tier">
+				<div class="demo" onclick="select_tier(this)">demo</div>
+				<div class="free" onclick="select_tier(this)">free</div>
+				<div class="plus" onclick="select_tier(this)">plus</div>
+				<div class="pro" onclick="select_tier(this)">pro</div>
+			</div>
+			<button class="option" onclick="resetpass()">
+				<div class="icon">lock_reset</div>
+				<div>
+					<div class="title">Reset password</div>
+					<div class="subtitle">Generate a new password for this user.</div>
+				</div>
+			</button>
+			<button class="option" onclick="deluser()">
+				<div class="icon">delete</div>
+				<div>
+					<div class="title">Delete user</div>
+					<div class="subtitle">Drop this person from Librusik database.</div>
+				</div>
+			</button>
+		</div>
+		<div id="deluserc" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('deluserc', 'user', true)"></button>
+			<div class="header">Delete account</div>
+			<div class="darken">Do you really want to delete <b id="utbd"></b>?</div>
+			<br>
+			<button onclick="delaccount()" class="highlighted danger">Yes, do it</button>
+		</div>
+		<div id="resetpassc" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('resetpassc', 'user', true)"></button>
+			<div class="header">Reset password</div>
+			<div class="darken">Do you want to generate a new password for<br><b id="utbc"></b>?</div>
+			<br>
+			<button onclick="genpasswd()" class="highlighted">Yes, do it</button>
+		</div>
+		<div id="resetpasswd" class="hidden" style="display:none">
+			<button class="back" onclick="showdiv('resetpasswd', 'user', true);purgepass()"></button>
+			<div class="header">Reset password</div>
+			<div class="darken">A new password for <b id="utbcr"></b> has been generated:</div><br>
+			<div id="passbox"></div>
+		</div>
+		<div class="hidden" id="err" style="display:none">
+			<button class="back" id="errbtn"></button><br>
+			<div class="icon svge">priority_high</div>
+			<div class="error" id="errname"></div>
+			<div class="suggestion" id="errdesc"></div>
+		</div>
+		<div class="hidden" id="succ" style="display:none">
+			<button class="back" id="succbtn"></button><br>
+			<div class="icon ssvg">done</div>
+			<div class="success" id="succname"></div>
+			<div class="suggestion" id="succdesc"></div>
+		</div>
+	</center>
+<br>
+</body>

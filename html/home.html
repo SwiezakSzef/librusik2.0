@@ -1,0 +1,48 @@
+<div class="notice" style="%s">
+	<div style="font-size: 16px">NOTICE</div>
+	<div>%s</div>
+</div>
+<div class="headline">%s, %s</div>
+<div class="subtitle">%s</div>
+<div class="circ" style="color: #F46">
+	<svg class="cprog" viewBox="0 0 110 110">
+		<defs>
+			<path id="thePath" d="M40,90 A40,40 0 1,1 70,90" style="fill:none;"/>
+		</defs>
+		<use xlink:href="#thePath" style="stroke: #333;" />
+		<use xlink:href="#thePath" style="stroke: #F46;stroke-dasharray: 220.6;stroke-dashoffset: %s;animation: school 2s;" />
+	</svg>
+	<div class="value">%s<b>%%</b></div>
+	<div class="tooltip">%s day%s left</div>
+	<div class="icon">school</div>
+</div>
+<div class="circ" style="color: #48F">
+	<svg class="cprog" viewBox="0 0 110 110">
+		<defs>
+			<path id="thePath2" d="M40,90 A40,40 0 1,1 70,90" style="fill:none;"/>
+		</defs>
+		<use xlink:href="#thePath2" style="stroke: #333;" />
+		<use xlink:href="#thePath2" style="stroke: #48F;stroke-dasharray: 220.6;stroke-dashoffset: %s;animation: year 2s;" />
+	</svg>
+	<div class="value">%s<b>%%</b></div>
+	<div class="tooltip">%s day%s left</div>
+	<div class="icon">calendar_month</div>
+</div><br>
+<div class="lucky" id="datafetcher">
+	<div class="icon" style="font-size: 22px;">settings</div>
+	<div>Fetching lucky number</div>
+</div>
+<div class="lucky hidden" id="luckynum">
+	<div class="icon" style="font-size: 22px;">sentiment_very_satisfied</div>
+	<div></div>
+</div>
+<style type="text/css">
+	@keyframes school {
+		from {stroke-dashoffset: 220;}
+		to {stroke-dashoffset: %s;}
+	}
+	@keyframes year {
+		from {stroke-dashoffset: 220;}
+		to {stroke-dashoffset: %s;}
+	}
+</style>
